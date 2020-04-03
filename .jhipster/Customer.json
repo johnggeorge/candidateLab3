@@ -1,0 +1,43 @@
+{
+    "name": "Customer",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "password",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "booking",
+            "otherEntityRelationshipName": "user",
+            "relationshipName": "booking"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "loyalty",
+            "otherEntityRelationshipName": "customer",
+            "relationshipName": "loyalty",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200403045400",
+    "entityTableName": "customer",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

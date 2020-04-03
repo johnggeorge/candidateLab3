@@ -1,0 +1,50 @@
+{
+    "name": "Showtime",
+    "fields": [
+        {
+            "fieldName": "time",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "noofseats",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rate",
+            "fieldType": "Float"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "booking",
+            "otherEntityRelationshipName": "showtime",
+            "relationshipName": "booking"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "theater",
+            "otherEntityRelationshipName": "showtime",
+            "relationshipName": "theater",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "movie",
+            "otherEntityRelationshipName": "showtime",
+            "relationshipName": "movie",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200403045700",
+    "entityTableName": "showtime",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
