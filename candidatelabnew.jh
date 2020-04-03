@@ -1,0 +1,66 @@
+entity Customer {
+    name String,
+    email String,
+    password String,
+}
+
+entity Theater {
+    name String,
+    address String,
+    image ImageBlob
+}
+
+entity Movie {
+    name String,
+    rating Float,
+    genre String,
+    cast String,
+    image ImageBlob,
+    desc String
+}
+
+entity Showtime {
+    time ZonedDateTime,
+    noofseats Integer,
+    rate Float
+}
+
+entity Booking {
+	noOfSeats Integer
+}
+
+enum Loyalty {
+	Gold, Silver, Bronze
+}
+
+relationship ManyToMany {
+	Theater{movie} to Movie{theater}
+}
+
+relationship ManyToOne {
+	Customer to Loyalty
+}
+
+relationship OneToMany {
+    Loyalty to Customer
+}
+
+relationship OneToMany{
+	Customer{booking} to Booking{user}
+    Showtime{booking} to Booking{showtime}
+    Theater{showtime} to Showtime{theater}
+    Movie{showtime} to Showtime{movie}
+}
+
+
+// Set pagination options
+paginate Movie, Showtime, Theater with infinite-scroll
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
