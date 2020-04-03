@@ -1,0 +1,36 @@
+{
+    "name": "Booking",
+    "fields": [
+        {
+            "fieldName": "noOfSeats",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "customer",
+            "otherEntityRelationshipName": "booking",
+            "relationshipName": "user",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "showtime",
+            "otherEntityRelationshipName": "booking",
+            "relationshipName": "showtime",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200403054200",
+    "entityTableName": "booking",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

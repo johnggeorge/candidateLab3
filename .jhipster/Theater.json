@@ -1,0 +1,45 @@
+{
+    "name": "Theater",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "showtime",
+            "otherEntityRelationshipName": "theater",
+            "relationshipName": "showtime"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "movie",
+            "otherEntityRelationshipName": "theater",
+            "relationshipName": "movie",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200403053900",
+    "entityTableName": "theater",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
