@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="showtime">
+            <h2><span>Showtime</span> {{ showtime.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Time</span></dt>
+                <dd>
+                    <span>{{ showtime.time }}</span>
+                </dd>
+                <dt><span>Noofseats</span></dt>
+                <dd>
+                    <span>{{ showtime.noofseats }}</span>
+                </dd>
+                <dt><span>Rate</span></dt>
+                <dd>
+                    <span>{{ showtime.rate }}</span>
+                </dd>
+                <dt><span>Theater</span></dt>
+                <dd>
+                    <div *ngIf="showtime.theater">
+                        <a [routerLink]="['/theater', showtime.theater?.id, 'view']">{{ showtime.theater?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Movie</span></dt>
+                <dd>
+                    <div *ngIf="showtime.movie">
+                        <a [routerLink]="['/movie', showtime.movie?.id, 'view']">{{ showtime.movie?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/showtime', showtime.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
