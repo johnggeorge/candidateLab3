@@ -1,0 +1,70 @@
+<div>
+    <h2 id="page-heading">
+        <span>Theaters</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-theater" [routerLink]="['/theater/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Theater
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="theaters?.length === 0">
+        <span>No theaters found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="theaters?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span>Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="address"><span>Address</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="image"><span>Image</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let theater of theaters ;trackBy: trackId">
+                    <td><a [routerLink]="['/theater', theater.id, 'view']">{{ theater.id }}</a></td>
+                    <td>{{ theater.name }}</td>
+                    <td>{{ theater.address }}</td>
+                    <td>
+                        <a *ngIf="theater.image" (click)="openFile(theater.imageContentType, theater.image)">
+                            <img [src]="'data:' + theater.imageContentType + ';base64,' + theater.image" style="max-height: 30px;" alt="theater image"/>
+                        </a>
+                        <span *ngIf="theater.image">{{ theater.imageContentType }}, {{ byteSize(theater.image) }}</span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/theater', theater.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/theater', theater.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(theater)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
